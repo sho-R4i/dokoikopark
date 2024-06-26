@@ -56,3 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'kaminari'
+gem 'annotate'
+gem 'rails-i18n'
+gem 'enum_help'
+gem 'geocoder'
