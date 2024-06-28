@@ -8,7 +8,7 @@ class ParksController < ApplicationController
     @park.user_id = current_user.id
     if @park.save
       flash[:notice] = '公園の情報を投稿しました。'
-      redirect_to parks_path
+      redirect_to park_path
     else
       @parks = Park.all
       render :index

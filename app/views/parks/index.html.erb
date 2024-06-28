@@ -1,0 +1,15 @@
+<h2>投稿一覧</h2>
+<div>
+  <%= link_to '新規投稿', new_park_path %>
+</div>
+
+<% @parks.each do |park| %>
+  <table>
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to park.park_name, park_path(park.id) %></td>
+    </tbody>
+  </table>
+<% end %>
