@@ -1,0 +1,28 @@
+<h1>投稿編集</h1>
+  <% if @park.errors.any? %>
+      <%= @park.errors.count %>error prohibited this pk from being saved:
+      <ul>
+        <% @park.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+  <%= form_with model: @park, method: :post do |f| %>
+    <h4>公園名称</h4>
+    <%= f.text_field :park_name %>
+
+    <h4>場所</h4>
+    <%= f.text_field :address %>
+
+    <h4>画像アップロード</h4>
+    <%= f.file_field :image %>
+
+    <h4>タグ付け</h4>
+    <br>
+    <!-- チェックボックスでタグ内容を表示 -->
+
+    <h4>公園紹介</h4>
+    <%= f.text_area :park_introduction %><br>
+    <%= f.submit '変更を保存' %>
+  <% end %>

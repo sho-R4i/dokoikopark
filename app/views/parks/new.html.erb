@@ -8,7 +8,7 @@
       </ul>
   <% end %>
 
-  <%= form_with model: @park, url: '/parks', method: :post do |f| %>
+  <%= form_with model: @park, method: :post do |f| %>
     <h4>公園名称</h4>
     <%= f.text_field :park_name %>
     
@@ -16,7 +16,7 @@
     <%= f.text_field :address %>
   
     <h4>画像アップロード</h4>
-    <%= f.file_field :image, required: true %>
+    <%= f.file_field :image %>
     
     <h4>タグ付け</h4>
     <!-- チェックボックスでタグ内容を表示 -->
