@@ -11,23 +11,23 @@
 
 ​
 ### ターゲットユーザー
-・子育て中のママ・パパ(サポートで加わるその他家族)
+・子育て中のママ・パパ(サポートで加わるその他家族)<br>
 ・幼稚園や保育園などの先生方
 ​
 ### 主な利用シーン
-・子どもと公園へ出掛けたいが、行先に困ってしまったとき
+・子どもと公園へ出掛けたいが、行先に困ってしまったとき<br>
 ・どのように遊べる公園なのか情報を詳細に知りたいとき
 ​
 ## 設計書
 後ほど作成予定
 ​
 ## 開発環境
-・OS：Linux(CentOS)
-・言語：HTML,CSS,JavaScript,Ruby,SQL
-・フレームワーク：Ruby on Rails
-・JSライブラリ：jQuery
+・OS：Linux(CentOS)<br>
+・言語：HTML,CSS,JavaScript,Ruby,SQL<br>
+・フレームワーク：Ruby on Rails<br>
+・JSライブラリ：jQuery<br>
 ・IDE：Cloud9
 ​
 ## 使用素材
-・フリーイラスト素材として以下を使用
+・フリーイラスト素材として以下を使用<br>
     ◉FREEPIK(https://jp.freepik.com/)
