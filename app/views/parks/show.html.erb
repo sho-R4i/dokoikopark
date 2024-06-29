@@ -1,3 +1,10 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-5 text-left">
+      <%= link_to "ホーム", parks_path %> >> <%= @park.park_name %>
+    </div>
+  </div>
+
 <div>
   <h2><%= @park.park_name %></h2>
   <%= link_to "投稿を編集", edit_park_path(@park.id) %>

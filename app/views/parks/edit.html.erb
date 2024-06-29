@@ -1,4 +1,11 @@
-<h1>投稿編集</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-5 text-left">
+      <%= link_to "ホーム", parks_path %> >> <%= link_to @park.park_name, park_path(@park.id) %> >> 投稿編集
+    </div>
+  </div>
+
+
   <% if @park.errors.any? %>
       <%= @park.errors.count %>error prohibited this pk from being saved:
       <ul>
