@@ -4,17 +4,26 @@
       <%= link_to "ホーム", parks_path %> >> <%= @park.park_name %>
     </div>
   </div>
-
-<div>
-  <h2><%= @park.park_name %></h2>
-  <%= link_to "投稿を編集", edit_park_path(@park.id) %>
-</div>
-
-<div>
-  <h2>公園概要</h2>
-  <h3>タグ</h3>
-  <br>
-  <br>
-  <h3>公園紹介</h3>
-  <%= @park.park_introduction %>
+  
+  <div class="row">
+    <div>
+      <h2><%= @park.park_name %></h2>
+      <% if @park.user_id == current_user.id %>
+      <%= link_to "投稿を編集", edit_park_path(@park.id) %>
+      <%= link_to '投稿を削除', @park, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div>
+      <h2>公園概要</h2>
+      <h3>タグ</h3>
+      <br>
+      <br>
+      <h3>公園紹介</h3>
+      <%= @park.park_introduction %>
+    </div>
+  </div>
+  
 </div>

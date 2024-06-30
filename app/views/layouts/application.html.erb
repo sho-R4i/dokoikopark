@@ -25,6 +25,9 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
+            <div class="mt-2 text-white">
+            ようこそ、<%= current_user.name %>さん！
+            </div>
             <li>
               <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>
               <i class="fa-solid fa-user"></i> マイページ
@@ -72,5 +75,16 @@
         </div>
       </nav>
     <%= yield %>
+    </header>
   </body>
+  
+  <footer>
+     <div class="container-fluid mt-5 bg-info">
+       <div class="row">
+         <div class="mx-auto text-white">
+    <p>©2024 Sho_n.</p>
+         </div>
+       </div>
+     </div>
+  </footer>
 </html>
