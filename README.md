@@ -30,4 +30,6 @@
 ​
 ## 使用素材
 ・フリーイラスト素材として以下を使用<br>
-    ◉FREEPIK(https://jp.freepik.com/)
+    ◉FREEPIK(https://jp.freepik.com/)<br>
+・ロゴの作成<br>
+    ◉DesignEvo(https://www.designevo.com/jp/)
