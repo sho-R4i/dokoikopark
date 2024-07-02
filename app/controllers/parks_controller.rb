@@ -17,6 +17,7 @@ class ParksController < ApplicationController
 
   def index
     @parks = Park.all
+    @parks = @parks.where(park_name: params[:keyword]) if params[:keyword].present?
   end
 
   def show

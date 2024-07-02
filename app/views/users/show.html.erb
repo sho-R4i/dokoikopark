@@ -1,0 +1,29 @@
+  <div class="row">
+    <div class="col-5 text-left">
+      <%= link_to "ホーム", parks_path %> >> マイページ
+    </div>
+  </div>
+
+  <div class="row align-items-stretch mt-2">
+    <div class="col-4 bg-warning">
+      <span>投稿履歴一覧</span>
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+            <% @parks.each do |park| %>
+            <tr>
+              <td><%= link_to park.park_name, park_path(park.id) %></td>
+          </tbody>
+            <% end %>
+        </table>
+    </div>
+    
+    <div class="col-4 bg-success">
+      <span>いいねした投稿</span>
+    </div>
+    
+    <div class="col-4 bg-primary">
+      <span>コメントした投稿</span>
+
+    </div>

@@ -4,7 +4,7 @@
       <%= link_to "ホーム", parks_path %> >> <%= @park.park_name %>
     </div>
   </div>
-  
+
   <div class="row">
     <div>
       <h2><%= @park.park_name %></h2>
@@ -14,16 +14,23 @@
       <% end %>
     </div>
   </div>
-  
+
+  <br>
+
   <div class="row">
     <div>
-      <h2>公園概要</h2>
+      <h3>公園概要</h3>
+
+      <br>
+
       <h3>タグ</h3>
+
       <br>
       <br>
+
       <h3>公園紹介</h3>
       <%= @park.park_introduction %>
     </div>
   </div>
-  
+
 </div>

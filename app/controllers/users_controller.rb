@@ -20,9 +20,9 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   private
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"

@@ -1,4 +1,4 @@
 class Comment < ApplicationRecord
-  belongs_to :parkt
+  belongs_to :park
   belongs_to :user
 end
