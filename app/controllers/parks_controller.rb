@@ -18,11 +18,26 @@ class ParksController < ApplicationController
   def index
     @parks = Park.all
     @parks = @parks.where(park_name: params[:keyword]) if params[:keyword].present?
+    respond_to do |format|
+      format.html do
+        @parks
+      end
+      format.json do
+        @parks
+      end
+    end
   end
 
   def show
-    @park = Park.find(params[:id])
-    @user = User.find(@park.user.id)
+    respond_to do |format|
+      format.html do
+        @park = Park.find(params[:id])
+        @user = User.find(@park.user.id)
+      end
+      format.json do
+        @park = Park.find(params[:id])
+      end
+    end
   end
 
   def edit
@@ -54,7 +69,7 @@ class ParksController < ApplicationController
   private
 
   def park_params
-    params.require(:park).permit(:park_name, :park_introduction)
+    params.require(:park).permit(:park_name, :park_introduction, :address)
   end
 
   def is_matching_login_user
