@@ -9,11 +9,17 @@
     <script src="https://kit.fontawesome.com/d78874b31e.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <style>
+      .navbar, .footer {
+        background-color: #E3CAAC;
+      }
+    </style>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-info text-light">
+      <nav class="navbar navbar-expand-lg navbar-dark text-light">
         <div class="container">
           <a class="navbar-brand" href="/">
             <%= image_tag 'logo.png', alt:'サイトロゴ' %>
@@ -78,7 +84,7 @@
     <div class="container">
     <%= yield %>
     </div>
-    <footer class="footer bg-info fixed-bottom text-light">
+    <footer class="footer text-light">
       <div class="container mt-2 mb-2 text-center"> ©2024 Sho_n.
       </div>
     </footer>

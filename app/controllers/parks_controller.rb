@@ -38,6 +38,7 @@ class ParksController < ApplicationController
         @park = Park.find(params[:id])
       end
     end
+    @park_favorites_count = Favorite.where(park_id: @park.id).count
   end
 
   def edit
@@ -50,7 +51,7 @@ class ParksController < ApplicationController
     @park = Park.find(params[:id])
     if @park.update(park_params)
       flash[:notice] = '公園の情報を更新しました。'
-      redirect_to park_path
+      redirect_to park_path(@park)
     else
       render :edit
     end

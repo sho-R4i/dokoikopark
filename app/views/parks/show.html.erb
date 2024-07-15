@@ -1,35 +1,62 @@
-<div class="container-fluid">
+
   <div class="row">
-    <div class="col-5 text-left">
+    <div class="col-5 mt-3 text-left">
       <%= link_to "ホーム", parks_path %> >> <%= @park.park_name %>
     </div>
   </div>
 
   <div class="row">
-    <div>
+    <div class="col-3 mt-3">
       <h2><%= @park.park_name %></h2>
+    </div>
+    <div class="col-3 mt-4">
       <% if @park.user_id == current_user.id %>
-      <%= link_to "投稿を編集", edit_park_path(@park.id) %>
+      <%= link_to "投稿を編集", edit_park_path(@park.id) %> /
       <%= link_to '投稿を削除', @park, method: :delete, data: { confirm: '本当に削除しますか?' } %>
       <% end %>
     </div>
+    
+    <div class="col-6 mt-3 ">
+      aaaa
+    </div>
   </div>
-
-  <br>
+  
 
   <div class="row" id="mapInfo" data-parkId=<%= @park.id %>>
     <div>
       <h3>公園概要</h3>
-
-      <br>
-
-      <h3>タグ</h3>
-
-      <br>
-      <br>
-
-      <h3>公園紹介</h3>
-      <%= @park.park_introduction %>
+        <div class="col-sm-6">
+          <% if @park.image.attached? %>
+            <%= image_tag @park.image, class: "img-fluid" %>
+          <% end %>
+        </div>
+        
+        <div class="col-sm-6">
+          
+        </div>
+        
+        
+    <div class="row">
+        <h3>タグ</h3>
+    </div>
+  
+    <div class="row">
+        <h3>公園紹介</h3>
+        <%= @park.park_introduction %>
+    </div>
+    
+    <div class="row">    
+      <% if @park.favorited?(current_user) %>
+          <%= link_to park_favorites_path(@park.id), method: :delete do %>
+             <i class="fa-solid fa-thumbs-up", style="color:red;"></i>
+          <% end %>いいね
+      <% else %>
+          <%= link_to park_favorites_path(@park.id), method: :post do %>
+            　<i class="fa-solid fa-thumbs-up"></i>
+          <% end %>いいね
+      <% end %>
+      <%= @park_favorites_count %>
+    </div>
     </div>
   </div>
 
