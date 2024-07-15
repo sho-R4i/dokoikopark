@@ -14,12 +14,16 @@
       .navbar, .footer {
         background-color: #E3CAAC;
       }
+      
+      body {
+        background-color: #90C8A1;
+      }
     </style>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark text-light">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/">
             <%= image_tag 'logo.png', alt:'サイトロゴ' %>
@@ -31,47 +35,47 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            <div class="mt-2 text-white">
+            <div class="mt-2 text-black">
             ようこそ、<%= current_user.name %>さん！
             </div>
             <li>
-              <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>
+              <%= link_to user_path(current_user.id), class: "nav-link text-dark" do %>
               <i class="fa-solid fa-user"></i> マイページ
               <% end %>
             </li>
             <li>
-              <%= link_to new_park_path, class: "nav-link text-light", data: {turbolinks: "false"} do %>
+              <%= link_to new_park_path, class: "nav-link text-dark", data: {turbolinks: "false"} do %>
               <i class="fa-solid fa-pencil"></i> 新規投稿
               <% end %>
             </li>
             <li>
-              <%= link_to parks_path, class: "nav-link text-light" do %>
+              <%= link_to parks_path, class: "nav-link text-dark" do %>
               <i class="fa-solid fa-location-dot"></i> 投稿一覧
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
               <i class="fa-solid fa-right-from-bracket"></i> ログアウト
               <% end %>
             </li>
             <% else %>
             <li>
-              <%= link_to root_path, class: "nav-link text-light" do %>
+              <%= link_to root_path, class: "nav-link text-dark" do %>
               <i class="fa-solid fa-house"></i> ホーム
               <% end %>
             </li>
             <li>
-              <%= link_to about_path, class: "nav-link text-light" do %>
+              <%= link_to about_path, class: "nav-link text-dark" do %>
               <i class="fa-solid fa-link"></i> このサイトについて
               <% end %>
             </li>
             <li>
-              <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+              <%= link_to new_user_registration_path, class: "nav-link text-dark" do %>
               <i class="fa-solid fa-user-plus"></i> 新規登録
               <% end %>
             </li>
             <li>
-              <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+              <%= link_to new_user_session_path, class: "nav-link text-dark" do %>
               <i class="fa-solid fa-right-to-bracket"></i> ログイン
               <% end %>
             </li>
