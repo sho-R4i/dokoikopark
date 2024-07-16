@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5 text-left">
+    <div class="col-6 mt-3 pb-3 text-left">
       <%= link_to "ホーム", parks_path %> >> <%= link_to @park.park_name, park_path(@park.id) %> >> 投稿編集
     </div>
   </div>
@@ -47,3 +47,5 @@
     <%= f.text_area :park_introduction %><br>
     <%= f.submit '変更を保存' %>
   <% end %>
+ 
+</div>

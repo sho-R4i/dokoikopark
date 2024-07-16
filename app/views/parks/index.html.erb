@@ -47,14 +47,14 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>col1</th>
-          <th>col2</th>
+          <th>投稿日</th>
+          <th>公園名</th>
         </tr>
       </thead>
       <tbody>
         <% @parks.each do |park| %>
           <tr>
-            <td>col1-data</td>
+            <td><%= l park.created_at %></td>
             <td><%= link_to park.park_name, park_path(park.id) %></td>
           </tr>
         <% end %>

@@ -70,7 +70,7 @@ class ParksController < ApplicationController
   private
 
   def park_params
-    params.require(:park).permit(:park_name, :park_introduction, :address)
+    params.require(:park).permit(:park_name, :park_introduction, :address, :image)
   end
 
   def is_matching_login_user

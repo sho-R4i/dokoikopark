@@ -6,46 +6,46 @@
   </div>
 
   <div class="row">
-    <div class="col-3 mt-3">
+    <div class="col-4 mt-3">
       <h2><%= @park.park_name %></h2>
-    </div>
-    <div class="col-3 mt-4">
+    <p>
       <% if @park.user_id == current_user.id %>
       <%= link_to "投稿を編集", edit_park_path(@park.id) %> /
       <%= link_to '投稿を削除', @park, method: :delete, data: { confirm: '本当に削除しますか?' } %>
       <% end %>
+    </p>
     </div>
+
     
-    <div class="col-6 mt-3 ">
-      aaaa
+    <div class="col-8 mt-4 text-right">
+      投稿ユーザー:<%= link_to @park.user.name, user_path(@park.user) %>
     </div>
   </div>
   
 
   <div class="row" id="mapInfo" data-parkId=<%= @park.id %>>
-    <div>
-      <h3>公園概要</h3>
-        <div class="col-sm-6">
+        <div class="col-6">
           <% if @park.image.attached? %>
-            <%= image_tag @park.image, class: "img-fluid" %>
+            <%= image_tag @park.image.variant(resize: '500x') %>
           <% end %>
         </div>
         
         <div class="col-sm-6">
-          
+          <div id="map"></div>
         </div>
         
         
     <div class="row">
         <h3>タグ</h3>
     </div>
-  
+    
     <div class="row">
-        <h3>公園紹介</h3>
-        <%= @park.park_introduction %>
+        <h3 class="introduction">公園紹介</h3>
+          <%= @park.park_introduction %>
     </div>
     
-    <div class="row">    
+    <div class="row">
+      <p class="favorites">
       <% if @park.favorited?(current_user) %>
           <%= link_to park_favorites_path(@park.id), method: :delete do %>
              <i class="fa-solid fa-thumbs-up", style="color:red;"></i>
@@ -56,13 +56,13 @@
           <% end %>いいね
       <% end %>
       <%= @park_favorites_count %>
+      </p>
+      <p class="comments">
+        
+      </p>
     </div>
-    </div>
+    
   </div>
 
-</div>
-<div class="container">
-  <div id="map"></div>
-</div>
-
+  
 <%= javascript_pack_tag 'map_show', 'data-turbolinks-track': 'reload' %>
