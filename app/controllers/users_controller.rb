@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @parks = @user.parks
+    @favorited_parks = @user.favorites.includes(:park).map { |favorite| favorite.park }
   end
 
   def edit
