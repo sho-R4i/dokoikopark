@@ -38,6 +38,8 @@ class ParksController < ApplicationController
         @park = Park.find(params[:id])
       end
     end
+    @comments = @park.comments
+    @comment = Comment.new
     @park_favorites_count = Favorite.where(park_id: @park.id).count
   end
 

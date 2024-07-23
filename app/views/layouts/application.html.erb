@@ -42,7 +42,8 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <div class="mt-2 text-black">
-            ようこそ、<%= current_user.name %>さん！
+              <%= image_tag(current_user.get_profile_image(50, 50), alt: current_user.name, class: "avatar") %>
+              ようこそ、<%= current_user.name %>さん！
             </div>
             <li>
               <%= link_to user_path(current_user.id), class: "nav-link text-dark" do %>

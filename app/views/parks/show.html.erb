@@ -68,9 +68,19 @@
     <% end %>
     <%= @park_favorites_count %>
     </p>
-    <p class="comments">
-      
-    </p>
+    <div class="comments">
+      <% @comments.each do |comment| %>
+        <%= comment.comment %><br>
+      <% end %>
+    </div>
+    
+    <div>
+      <%= form_with model: @comment do |f| %>
+        <%= f.hidden_field :park_id, value: @park.id %>
+        <%= f.text_area :comment, class: "form-control" %>
+        <%= f.submit %>
+      <% end %>
+    </div>
   </div>
 
 <%= javascript_pack_tag 'map_show', 'data-turbolinks-track': 'reload' %>
