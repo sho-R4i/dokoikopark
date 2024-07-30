@@ -11,6 +11,7 @@
     "bootstrap": "4.6.2",
     "dotenv": "^16.4.5",
     "jquery": "^3.7.1",
+    "jquery-raty-js": "^2.8.0",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",

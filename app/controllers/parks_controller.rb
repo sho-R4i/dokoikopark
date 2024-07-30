@@ -6,18 +6,23 @@ class ParksController < ApplicationController
   def create
     @park = Park.new(park_params)
     @park.user_id = current_user.id
+    tag_list = params[:park][:name].split(',')
     if @park.save
+      @park.save_tag(tag_list)
       flash[:notice] = '公園の情報を投稿しました。'
       redirect_to parks_path
     else
+      flash.now[:alert] = '投稿に失敗ました。'
       @parks = Park.all
-      render :index
+      render :new
     end
   end
 
   def index
     @parks = Park.all
+    @tag_list = Tag.all
     @parks = @parks.where(park_name: params[:keyword]) if params[:keyword].present?
+    @parks = @parks.includes(:post_tags).where('post_tags.tag_id': params[:tag_id]) if params[:tag_id].present?
     respond_to do |format|
       format.html do
         @parks
@@ -26,6 +31,12 @@ class ParksController < ApplicationController
         @parks
       end
     end
+  end
+  
+  def search_tag
+    @tag_list=Tag.all
+    @tag=Tag.find(params[:tag_id])
+    @parks=@tag.parks.page(params[:page]).per(10)
   end
 
   def show
@@ -41,17 +52,21 @@ class ParksController < ApplicationController
     @comments = @park.comments
     @comment = Comment.new
     @park_favorites_count = Favorite.where(park_id: @park.id).count
+    @post_tags = @park.tags
   end
 
   def edit
     is_matching_login_user
     @park = Park.find(params[:id])
+    @tag_list = @park.tags.pluck(:name).join(',')
   end
 
   def update
     is_matching_login_user
     @park = Park.find(params[:id])
+    tag_list = params[:park][:name].split(',')
     if @park.update(park_params)
+      @park.save_tag(tag_list)
       flash[:notice] = '公園の情報を更新しました。'
       redirect_to park_path(@park)
     else
@@ -72,9 +87,9 @@ class ParksController < ApplicationController
   private
 
   def park_params
-    params.require(:park).permit(:park_name, :park_introduction, :address, :image)
+    params.require(:park).permit(:park_name, :park_introduction, :address, :image, :star)
   end
-
+  
   def is_matching_login_user
     park = Park.find(params[:id])
     unless park.user.id == current_user.id

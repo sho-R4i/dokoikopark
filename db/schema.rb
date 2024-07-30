@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_21_134315) do
+ActiveRecord::Schema.define(version: 2024_07_28_002809) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,15 +80,24 @@ ActiveRecord::Schema.define(version: 2024_07_21_134315) do
     t.text "park_introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "star"
     t.index ["user_id"], name: "index_parks_on_user_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.integer "park_id", null: false
-    t.string "tag_name"
+  create_table "post_tags", force: :cascade do |t|
+    t.integer "park_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["park_id"], name: "index_tags_on_park_id"
+    t.index ["park_id", "tag_id"], name: "index_post_tags_on_park_id_and_tag_id", unique: true
+    t.index ["park_id"], name: "index_post_tags_on_park_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -113,5 +122,6 @@ ActiveRecord::Schema.define(version: 2024_07_21_134315) do
   add_foreign_key "favorites", "parks"
   add_foreign_key "favorites", "users"
   add_foreign_key "parks", "users"
-  add_foreign_key "tags", "parks"
+  add_foreign_key "post_tags", "parks"
+  add_foreign_key "post_tags", "tags"
 end

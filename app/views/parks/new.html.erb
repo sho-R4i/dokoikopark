@@ -38,12 +38,38 @@
         <%= f.file_field :image %>
     
         <h4>タグ付け</h4>
-        <!-- チェックボックスでタグ内容を表示 -->
+        <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+        <%= f.text_field :name,value: @tag_list,class:"form-control"%>
     
         <h4>公園紹介</h4>
         <%= f.text_area :park_introduction %><br>
-        <%= f.submit '投稿' %>
+        
+        <% if f.object.new_record? %>
+        <div class="form-group" id="star">
+          <%= f.label :star %>
+          <%= f.hidden_field :star, class: 'form-control' %>
+          <div id="post_raty"></div>
+        </div>
+        <script>
+            $('#post_raty').empty();
+            $('#post_raty').raty({  
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'park[star]',
+              score: "<%= f.object.star %>"
+            });
+        </script>
+      <% else %>
+        <div class="form-group">
+          <%= render "static_rate", park: park %>
+        </div>
       <% end %>
+      
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-success' %>
+      </div>
+    <% end %>
     </div>
   </div>
 <%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>
