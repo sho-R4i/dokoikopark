@@ -11,6 +11,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
     <style>
+      @font-face {
+      font-family: 'MyFont';
+      src: url('<%= asset_path('fonts/Corporate-Logo-Rounded-Bold-ver3.otf') %>');
+      }
+  
+      body {
+        font-family: 'MyFont', sans-serif;
+      }
+      
       .navbar, .footer {
         background-color: #E3CAAC;
       }

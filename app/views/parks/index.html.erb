@@ -1,3 +1,9 @@
+<style>
+  .card {
+    background-color: #f7eaad;
+  }
+</style>
+
 
   <div class="row">
     <div class="col-3 mt-3 text-left">
@@ -7,40 +13,45 @@
 
   <br>
   <br>
-
-  <div class="row">
-
-    <div class="col-4 offset-2 bg-danger">
-      <div>
-      <%= form_with url: parks_path, method: :get do |f| %>
-        <div class="form-label texe-left">
-          <%= f.label :search, "エリアで検索" %>
-        </div>
-        <%= f.search_field :keyword, value: params[:keyword] %>
-        <%= f.submit "検索" %>
-      <% end %>
-      </div>
-    </div>
-
-    <div class="col-4 ml-3 bg-warning">
-      <div>
+  
+  <div class="card mt-2">
+    <h3>検索フォーム</h3>
+    <div class="row">
+      <div class="col-4 mb-5 offset-2">
+        <div>
         <%= form_with url: parks_path, method: :get do |f| %>
           <div class="form-label texe-left">
-            <%= f.label :search, "公園名で検索" %>
+            <%= f.label :search, "エリアで検索" %>
           </div>
-          <%= f.search_field :keyword, value: params[:keyword] %>
+          <%= f.search_field :address_keyword, value: params[:address_keyword] %>
           <%= f.submit "検索" %>
         <% end %>
+        </div>
+      </div>
+      
+      <div class="col-4 ml-3 mb-3">
+        <div>
+          <%= form_with url: parks_path, method: :get do |f| %>
+            <div class="form-label texe-left">
+              <%= f.label :search, "公園名で検索" %>
+            </div>
+            <%= f.search_field :park_name_keyword, value: params[:park_name_keyword] %>
+            <%= f.submit "検索" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="mt-3 text-center">
+<div class="card mt-5">
+  <h3>タグ検索</h3>
+  <div class="mb-5 text-center">
     <% @tag_list.each do |list|%>
       <%= link_to list.name, parks_path(tag_id: list.id) %>
       <%= "(#{list.parks.count})" %>
     <% end %>
   </div>
+</div>
 
 
   <div class="bg-info mt-5" style="height:50vh;">

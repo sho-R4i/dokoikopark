@@ -20,9 +20,16 @@ class ParksController < ApplicationController
 
   def index
     @parks = Park.all
+    
+    if params[:address_keyword].present?
+      @parks = @parks.where("address LIKE ?", "%#{params[:address_keyword]}%")
+    elsif params[:park_name_keyword].present?
+      @parks = @parks.where("park_name LIKE ?", "%#{params[:park_name_keyword]}%")
+    end
+    
     @tag_list = Tag.all
-    @parks = @parks.where(park_name: params[:keyword]) if params[:keyword].present?
     @parks = @parks.includes(:post_tags).where('post_tags.tag_id': params[:tag_id]) if params[:tag_id].present?
+    
     respond_to do |format|
       format.html do
         @parks
