@@ -4,13 +4,13 @@
     </div>
   </div>
   
-  <div class="row">
+  <div class="mt-3">
     <h3><%= @user.name %>さんのページ</h3>
   </div>
 
-  <div class="row align-items-stretch mt-3">
-    <div class="col-4 bg-warning">
-      <h5>投稿履歴一覧</h5>
+  <div class="row">
+    <div class="col-4  align-items-stretch mt-3 border">
+      <h5 class="mt-2">投稿履歴一覧</h5>
         <ul>
           <% @parks.each do |park| %>
             <li><%= link_to park.park_name, park_path(park.id) %></li>
@@ -18,8 +18,8 @@
         </ul>
     </div>
     
-    <div class="col-4 bg-success">
-      <h5>いいねした投稿</h5>
+    <div class="col-4  align-items-stretch mt-3 border">
+      <h5 class="mt-2">いいねした投稿</h5>
         <ul>
           <% @favorited_parks.each do |park| %>
             <li><%= link_to park.park_name, park_path(park.id) %></li>
@@ -27,7 +27,7 @@
         </ul>
     </div>
     
-    <div class="col-4 bg-primary">
-      <h5>コメントした投稿</h5>
+    <div class="col-4  align-items-stretch mt-3 border">
+      <h5 class="mt-2">コメントした投稿</h5>
     </div>
   </div>

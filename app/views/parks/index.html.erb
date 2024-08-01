@@ -2,6 +2,8 @@
   .card {
     background-color: #f7eaad;
   }
+  
+  
 </style>
 
 
@@ -58,24 +60,40 @@
     <div id="map"></div>
   </div>
 
-  <div class="mt-5">
-    <h3>投稿一覧</h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>投稿日</th>
-          <th>公園名</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @parks.each do |park| %>
+  <div class="row">
+    <div class="col-8 offset-2 mt-5">
+      <h3>投稿一覧</h3>
+      <table class="table table-bordered">
+        <thead>
           <tr>
-            <td><%= l park.created_at %></td>
-            <td><%= link_to park.park_name, park_path(park.id) %></td>
+            <th>投稿日</th>
+            <th>公園名</th>
+            <th>評価</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @parks.each do |park| %>
+            <tr>
+              <td><%= l park.created_at %></td>
+              <td><%= link_to park.park_name, park_path(park.id) %></td>
+              <td>
+                <div id="star_<%= park.id %>"></div>
+                  <script>
+                    $('#star_<%= park.id %>').empty();
+                    $('#star_<%= park.id %>').raty({  
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
+                      score: "<%= park.star %>",
+                      readOnly: true,
+                    });
+                  </script>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 <%= javascript_pack_tag 'map_index', 'data-turbolinks-track': 'reload' %>

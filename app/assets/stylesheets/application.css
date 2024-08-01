@@ -1,11 +1,3 @@
-@font-face {
-     font-family: 'MyFont';
-     src: url('/assets/fonts/Corporate-Logo-Rounded-Bold-ver3.otf');
-}
-
-body {
-  font-family: 'MyFont', sans-serif;
-}
 
 .navbar-brand {
     height: 100%;
