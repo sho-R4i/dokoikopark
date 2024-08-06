@@ -5,11 +5,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @parks = @user.parks
-    @favorited_parks = @user.favorites.includes(:park).map { |favorite| favorite.park }
+    @favorited_parks = @user.favorite_parks
+    @comment_parks =  Park.joins(:comments).where(comments: { user_id: @user.id }).distinct
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
@@ -23,6 +24,10 @@ class UsersController < ApplicationController
   end
 
   private
+  
+  def user_params
+  params.require(:user).permit(:name, :profile_image)
+  end
 
   def ensure_guest_user
     @user = User.find(params[:id])

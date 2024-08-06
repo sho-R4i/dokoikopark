@@ -14,10 +14,17 @@ class User < ApplicationRecord
   end
 
   has_many :parks, dependent: :destroy
+  
   has_many :favorites, dependent: :destroy
+  has_many :favorite_parks, through: :favorites, source: :park
   has_many :comments, dependent: :destroy
+  has_many :comment_parks, through: :comments, source: :park
 
   has_one_attached :profile_image
+
+  def profile_image?
+     profile_image.present?
+  end
 
   def get_profile_image(width, height)
     unless profile_image.attached?

@@ -48,7 +48,7 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <div class="mt-2 text-black">
-              <%= image_tag(current_user.get_profile_image(50, 50), alt: current_user.name, class: "avatar") %>
+              <%= image_tag(current_user.get_profile_image(50, 50), alt: current_user.name, class: "avatar rounded-circle") %>
               ようこそ、<%= current_user.name %>さん！
             </div>
             <li>

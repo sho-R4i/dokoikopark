@@ -36,7 +36,8 @@
 
   
   <div class="col-8 mt-4 text-right">
-    投稿ユーザー:<%= link_to @park.user.name, user_path(@park.user) %>
+    投稿ユーザー:<%= image_tag(@park.user.profile_image, size: "50x50") if @park.user.profile_image? %>
+    <%= link_to @park.user.name, user_path(@park.user) %>
   </div>
 </div>
 
