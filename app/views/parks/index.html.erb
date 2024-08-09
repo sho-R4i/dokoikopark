@@ -45,30 +45,34 @@
     </div>
   </div>
 
-<div class="card mt-5">
-  <h3>タグ検索</h3>
-  <div class="mb-5 text-center">
-    <% @tag_list.each do |list|%>
-      <%= link_to list.name, parks_path(tag_id: list.id) %>
-      <%= "(#{list.parks.count})" %>
-    <% end %>
-  </div>
-</div>
-
-
-  <div class="bg-info mt-5">
-    <div id="map" style="height:50vh;"></div>
-  </div>
-
-  <div class="row">
-    <div class="col-8 offset-2 mt-5">
+  <div class="row mt-5">
+    <div class="col-md-3">
+      <div class="card">
+        <h3>タグ検索</h3>
+        <div class="mb-5">
+          <ul style="list-style:none;">
+            <% @tag_list.each do |list|%>
+              <li>
+                <%= link_to list.name, parks_path(tag_id: list.id) %>
+                <%= "(#{list.parks.count})" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <div class="bg-info col-md-6">
+      <div id="map" style="height:50vh;" class="mt-3"></div>
+    </div>
+  
+    <div class="col-md-3">
       <h3>投稿一覧</h3>
       <table class="table table-bordered">
         <thead>
           <tr>
             <th>投稿日</th>
             <th>公園名</th>
-            <th>評価</th>
           </tr>
         </thead>
         <tbody>
@@ -76,24 +80,12 @@
             <tr>
               <td><%= l park.created_at %></td>
               <td><%= link_to park.park_name, park_path(park.id) %></td>
-              <td>
-                <div id="star_<%= park.id %>"></div>
-                  <script>
-                    $('#star_<%= park.id %>').empty();
-                    $('#star_<%= park.id %>').raty({  
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      score: "<%= park.star %>",
-                      readOnly: true,
-                    });
-                  </script>
-              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
+</div>
 
 <%= javascript_pack_tag 'map_index', 'data-turbolinks-track': 'reload' %>
