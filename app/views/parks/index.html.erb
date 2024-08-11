@@ -62,28 +62,30 @@
       </div>
     </div>
   
-    <div class="bg-info col-md-6">
-      <div id="map" style="height:50vh;" class="mt-3"></div>
+    <div class="col-md-6">
+      <div id="map" style="height:50vh;" class="mt-2"></div>
     </div>
   
     <div class="col-md-3">
-      <h3>投稿一覧</h3>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>投稿日</th>
-            <th>公園名</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @parks.each do |park| %>
+      <div class="card">
+        <h3>投稿一覧</h3>
+        <table class="table table-bordered">
+          <thead>
             <tr>
-              <td><%= l park.created_at %></td>
-              <td><%= link_to park.park_name, park_path(park.id) %></td>
+              <th>投稿日</th>
+              <th>公園名</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @parks.each do |park| %>
+              <tr>
+                <td><%= l park.created_at %></td>
+                <td><%= link_to park.park_name, park_path(park.id) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

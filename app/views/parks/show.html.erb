@@ -13,15 +13,17 @@
 </div>
 
 <div class="row">
-  <div class="col-4 mt-3">
-    <h2><%= @park.park_name %></h2>
-    <p>
-      <% if @park.user_id == current_user.id %>
-      <%= link_to "投稿を編集", edit_park_path(@park.id), class: "btn btn-success" %> /
-      <%= link_to '投稿を削除', @park, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger" %>
-      <% end %>
-    </p>
-    <div id="star_<%= @park.id %>"></div>
+  <div class="col-8 mt-3">
+    
+    <div style="display: flex; align-items: center;">
+      <h2 style="margin-right: 20px;"><%= @park.park_name %></h2>
+        <% if @park.user_id == current_user.id %>
+        <%= link_to "投稿を編集", edit_park_path(@park.id), class: "btn btn-success mr-2" %> ／
+        <%= link_to '投稿を削除', @park, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger ml-2" %>
+        <% end %>
+    </div>
+    
+    <div id="star_<%= @park.id %>", style="margin-top: 20px;"></div>
     <script>
       $('#star_<%= @park.id %>').empty();
       $('#star_<%= @park.id %>').raty({  
@@ -35,7 +37,7 @@
   </div>
 
   
-  <div class="col-8 mt-4 text-right">
+  <div class="col-4 mt-4 text-right">
     投稿ユーザー:<%= image_tag(@park.user.profile_image, size: "50x50") if @park.user.profile_image? %>
     <%= link_to @park.user.name, user_path(@park.user) %>
   </div>
@@ -43,18 +45,20 @@
 
 
 <div class="row" id="mapInfo" data-parkId=<%= @park.id %>>
-  <div class="col-sm-6">
+  <div class="col-sm-6 mt-4 d-flex align-items-center text-center">
     <% if @park.image.attached? %>
       <%= image_tag @park.image.variant(resize: '500x') %>
+    <% else %>
+      <%= image_tag 'noimage.png', size: '200x200', class: 'mx-auto' %>
     <% end %>
   </div>
   
   <div class="col-sm-6">
-    <div id="map"></div>
+    <div id="map", class="mt-4"></div>
   </div>
 </div>
       
-<h3 class='tags'>タグ</h3>
+<h3 class='tags mt-3'>タグ</h3>
 <div class="row">
   <% @post_tags.each do |tag| %>
     <%= link_to tag.name, parks_path(tag_id: tag.id) %>
@@ -62,7 +66,7 @@
   <% end %>
 </div>
 
-<h3 class="introduction">公園紹介</h3>
+<h3 class="introduction mt-3">公園紹介</h3>
 <div class="row">
   <div class="col-6 pt-3 pb-3 border border-dark rounded-2">
     <%= @park.park_introduction %>
