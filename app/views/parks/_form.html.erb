@@ -1,0 +1,56 @@
+<%= form_with model: @park, url: park_path(@park), method: @park.new_record? ? :post : :patch do |f| %>
+  <h4>公園名称</h4>
+  <div class="mt-3 mb-3">
+    <%= f.text_field :park_name, class: 'form-control' %>
+  </div>
+  <h4>評価</h4>
+  <div class="mt-3 mb-3" id="star">
+    <%= f.hidden_field :star, class: 'form-control' %>
+    <div id="post_raty"></div>
+  </div>
+  <script>
+    $('#post_raty').empty();
+    $('#post_raty').raty({  
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'park[star]',
+      score: "<%= f.object.star %>"
+    });
+  </script>
+
+  <h4>場所</h4>
+  <div class="input-group mb-3 mt-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-tenge-sign"></i></span>
+    </div>
+    <%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号", id: "zipcode" %>
+  </div>
+  <div class="input-group mb-3 mt-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+    </div>
+    <%= f.text_field :address, class: "form-control", placeholder: "住所", id: "post_image_address" %>
+  </div>
+
+  <h4>画像アップロード</h4>
+    <div class="form-group mt-3 mb-3">
+      <%= f.file_field :image %>
+    </div>
+
+  <h4>タグ付け</h4>
+    <div class="form_group mb-3 mt-3">
+      <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+      <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+    </div>    
+  <h4>公園紹介</h4>
+    <div class="form-group mb-3 mt-3">
+      <%= f.text_area :park_introduction, class: 'form-control' %><br>
+    </div>
+    
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+<%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>

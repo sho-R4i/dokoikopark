@@ -45,7 +45,7 @@
 
 
 <div class="row" id="mapInfo" data-parkId=<%= @park.id %>>
-  <div class="col-sm-6 mt-4 d-flex align-items-center text-center">
+  <div class="col-md-6 mt-4 d-flex align-items-center text-center">
     <% if @park.image.attached? %>
       <%= image_tag @park.image.variant(resize: '500x') %>
     <% else %>
@@ -53,7 +53,7 @@
     <% end %>
   </div>
   
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <div id="map", class="mt-4"></div>
   </div>
 </div>
