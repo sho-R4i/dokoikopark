@@ -20,6 +20,7 @@ class ParksController < ApplicationController
 
   def index
     @parks = Park.all
+    @parks = Park.page(params[:page]).per(7)
     
     if params[:address_keyword].present?
       @parks = @parks.where("address LIKE ?", "%#{params[:address_keyword]}%")
