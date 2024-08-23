@@ -31,14 +31,14 @@
         starOff: "<%= asset_path('star-off.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",
         score: "<%= @park.star %>",
-        readOnly: true,
+        readOnly: true,/
       });
     </script>
   </div>
 
   
   <div class="col-4 mt-4 text-right">
-    投稿ユーザー:<%= image_tag(@park.user.profile_image, size: "50x50") if @park.user.profile_image? %>
+    投稿ユーザー:<%= image_tag(@park.user.profile_image, size: "50x50", class: "avatar rounded-circle") if @park.user.profile_image? %>
     <%= link_to @park.user.name, user_path(@park.user) %>
   </div>
 </div>
