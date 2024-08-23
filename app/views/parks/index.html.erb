@@ -17,12 +17,12 @@
   <br>
   
   <div class="card mt-2">
-    <h3>検索フォーム</h3>
+    <h3 class="search mt-2 ml-3"><i class="fa-solid fa-magnifying-glass"></i>検索フォーム</h3>
     <div class="row">
       <div class="col-4 mb-5 offset-2">
         <div>
         <%= form_with url: parks_path, method: :get do |f| %>
-          <div class="form-label texe-left">
+          <div class="form-label mt-3 texe-left">
             <%= f.label :search, "エリアで検索" %>
           </div>
           <%= f.search_field :address_keyword, value: params[:address_keyword] %>
@@ -34,7 +34,7 @@
       <div class="col-4 ml-3 mb-3">
         <div>
           <%= form_with url: parks_path, method: :get do |f| %>
-            <div class="form-label texe-left">
+            <div class="form-label  mt-3 texe-left">
               <%= f.label :search, "公園名で検索" %>
             </div>
             <%= f.search_field :park_name_keyword, value: params[:park_name_keyword] %>
@@ -48,7 +48,7 @@
   <div class="row mt-5">
     <div class="col-md-3">
       <div class="card">
-        <h3>タグ検索</h3>
+        <h3 class="tags mt-2 ml-3"><i class="fa-solid fa-tags"></i>タグ検索</h3>
         <div class="mb-5">
           <ul style="list-style:none;">
             <% @tag_list.each do |list|%>
@@ -67,9 +67,9 @@
     </div>
   
     <div class="col-md-3">
-      <div class="card">
-        <h3>投稿一覧</h3>
-        <table class="table table-bordered">
+      <div class="card mt-2">
+        <h3 class="posts mt-2 ml-3"><i class="fa-solid fa-location-dot"></i>投稿一覧</h3>
+        <table class="table table-light">
           <thead>
             <tr>
               <th>投稿日</th>

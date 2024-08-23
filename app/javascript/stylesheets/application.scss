@@ -1,6 +1,30 @@
 @use '~bootstrap/scss/bootstrap';
 
+@font-face {
+  font-family: "shokagiutage";
+  src: url("../fonts/shokagiutage_free.ttf") format("truetype");
+}
+
 #map {
   width: 100%;
   height: calc(100vh - 88px - 179px);
+}
+
+body {
+  font-family: 'M PLUS 1 Code', sans-serif;
+  //font-family: "shokagiutage";
+  background-color: #90C8A1;
+  background-image: url('../images/wood.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.navbar, .footer {
+  background-color: #E3CAAC;
+}
+
+footer {
+  position: sticky;
+  top: 1000vh;
+  width: 100%;
 }
