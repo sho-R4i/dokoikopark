@@ -20,7 +20,7 @@ class ParksController < ApplicationController
 
   def index
     @parks = Park.all
-    @parks = Park.page(params[:page]).per(7)
+    @parks = Park.order(created_at: :desc).page(params[:page]).per(7)
     
     if params[:address_keyword].present?
       @parks = @parks.where("address LIKE ?", "%#{params[:address_keyword]}%")
@@ -58,6 +58,7 @@ class ParksController < ApplicationController
       end
     end
     @comments = @park.comments
+    @comments = Comment.where(park_id: @park.id).order(created_at: :desc)
     @comment = Comment.new
     @park_favorites_count = Favorite.where(park_id: @park.id).count
     @post_tags = @park.tags

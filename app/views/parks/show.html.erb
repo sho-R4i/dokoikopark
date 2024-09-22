@@ -31,7 +31,7 @@
         starOff: "<%= asset_path('star-off.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",
         score: "<%= @park.star %>",
-        readOnly: true,/
+        readOnly: true,
       });
     </script>
   </div>
@@ -69,7 +69,7 @@
 <h3 class="introduction mt-3">公園紹介</h3>
 <div class="row">
   <div class="col-6 pt-3 pb-3 border border-dark rounded-2">
-    <%= @park.park_introduction %>
+    <%= simple_format(@park.park_introduction, sanitize: true) %>
   </div>
 </div>
   
@@ -90,17 +90,18 @@
 </div>
   
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <div id="comment_button" class="btn btn-primary show">コメント</div>
     <ul id="comments_area" class="hide">
       <% @comments.each do |comment| %>
-        <li><%= comment.comment %> ：by <%= comment.user.name %></li>
+        <li><%= comment.comment %> ：by <%= comment.user.name %> - <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+        <%= link_to '削除', comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-danger' if current_user == comment.user %></li>
       <% end %>
       <div id="close_button" class="btn btn-success">---コメントを閉じる---</div>
     </ul>
   </div>
   
-  <div class="col-md-6">
+  <div class="col-md-5">
     <%= form_with model: @comment do |f| %>
       <%= f.hidden_field :park_id, value: @park.id %>
       <%= f.text_area :comment, class: "form-control" %>
