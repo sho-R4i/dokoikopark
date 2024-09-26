@@ -5,7 +5,12 @@
 </div>
 
 <% if @park.errors.any? %>
-  <%= @park.errors.count %>error prohibited this pk from being saved:
+  <h2>
+    <%= I18n.t("errors.messages.not_saved",
+        count: @park.errors.count,
+        resource: @park.class.model_name.human.downcase)
+    %>
+  </h2>
   <ul>
     <% @park.errors.full_messages.each do |message| %>
       <li><%= message %></li>

@@ -13,7 +13,8 @@ async function initMap() {
 
   // 追記
   try {
-    const response = await fetch("/parks.json");
+    const response = await fetch(`/parks.json${location.search}`);
+
     if (!response.ok) throw new Error('Network response was not ok');
 
     const { data: { parks } } = await response.json();
